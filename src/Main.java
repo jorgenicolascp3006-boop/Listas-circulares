@@ -1,13 +1,62 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 void main() {
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    IO.println(String.format("Hello and welcome!"));
+    MiListaCircular lista = new MiListaCircular();
+    System.out.println(lista.toString());
+    System.out.println("¿Está vacía? " + lista.isEmpty());
 
-    for (int i = 1; i <= 5; i++) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        IO.println("i = " + i);
+    lista.insertHead(0);
+    lista.insertHead("Juan");
+    lista.insertHead(true);
+    lista.insertTail("Angela");
+
+    System.out.println(lista.toString());
+    System.out.println("Tamaño: " + lista.getSize());
+    System.out.println("Cabeza: " + lista.getHead());
+    System.out.println("Cola: " + lista.getTail());
+
+    Node nodoJuan = lista.search("Juan");
+    System.out.println("¿Contiene 'Juan'? " + lista.contains("Juan"));
+    System.out.println("Dato del nodo encontrado: " + lista.get(nodoJuan));
+
+    lista.set(nodoJuan, "Juan Carlos");
+    System.out.println("Después de set: " + lista.toString());
+
+    lista.insert(nodoJuan, "Nuevo después de Juan Carlos");
+    System.out.println("Después de insert(node, object): " + lista.toString());
+
+    lista.insert("Angela", "Nuevo después de Angela");
+    System.out.println("Después de insert(objectRef, object): " + lista.toString());
+
+    Object[] arreglo = lista.toArray();
+    System.out.print("Arreglo: ");
+    for (Object o : arreglo) {
+        System.out.print(o + " ");
     }
+    System.out.println();
+
+    lista.remove(nodoJuan);
+    System.out.println("Después de remove: " + lista.toString());
+
+    lista.add("Elemento agregado con add()");
+    System.out.println("Después de add: " + lista.toString());
+
+    lista.clear();
+    System.out.println("Después de clear: " + lista.toString());
+    System.out.println("¿Está vacía? " + lista.isEmpty());
+
+
+    MiListaCircular numeros = new MiListaCircular();
+    numeros.insertTail(5);
+    numeros.insertTail(1);
+    numeros.insertTail(3);
+    numeros.insertTail(2);
+    numeros.insertTail(4);
+    System.out.println("Lista de números: " + numeros.toString());
+
+    MiListaCircular ordenada = numeros.sortList();
+    System.out.println("Lista ordenada: " + ordenada.toString());
+
+    Node inicio = numeros.search(1);
+    Node fin = numeros.search(2);
+    MiListaCircular sub = numeros.subList(inicio, fin);
+    System.out.println("Sublista de 1 a 2: " + sub.toString());
 }
